@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+    	<meta charset="utf-8">
+    	<title>{{ title }} - My Djanasdasgo Application</title>
+    	{% load static %}
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+		<link rel="stylesheet" type="text/css" href="{% static 'app/style/StyleForLayout.css'%}">
+    	{% block style %}{% endblock %}
+	</head>
+	<body>
+		<div class="wrapper">
+			<header class="header">
+				<!--- Create navbar in header --->
+				<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+					<a class="navbar-brand" href="{% url 'main'%}">
+						<div class="main-icon__img"></div>
+					</a>
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#additional-menu">
+						<span class="navbar-toggler-icon bg-dark"></span>
+					</button>
+
+					<!--- Create collapse navbar if size of screen will be less lg --->
+					<div class="collapse navbar-collapse" id="additional-menu">
+						<ul class="navbar-nav mr-auto">
+							<li class="nav-item">
+								<a class="nav-link" href="{% url 'project_info' %}">Об проекте</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="{% url 'developers' %}">Разработчики</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="{% url 'team_info' %}">Об команде</a>
+							</li>
+						</ul>
+						<form class="form-inline my-2 lg-0">
+							<input class="form-control mr-sm-0" type="search" placeholder="Поиск...">
+							<button type="button" class="btn btn-outline-info mx-2">Поиск</button>
+						</form>
+						<!--- Create button for call modal window --->
+						{% if not email and not psswd%}
+						{% if statusBtnAuth %}
+						<button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#modalAuth">Войти</button>
+						{% endif %}
+						{% else %}
+						<button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#modalAuth">Кабинет</button>
+						{% endif %}
+					</div>
+				</nav>
+			</header>
+			<main class="main">
+				<div class="main__content">
+					<!--- Create modal window --->
+					<div class="modal fade" id="modalAuth">
+						<div class="modal-dialog modal-md">
+							<div class="modal-content">
+								<form method="post">
+									{% csrf_token %}
+									<!--- Create header for modal window --->
+									<div class="modal-header">
+										<h2 class="modal-title">Authorization</h2>
+										<a class="btn-close__button" data-bs-dismiss="modal">
+											<span class="btn-close__lines"></span>
+										</a>
+									</div>
+
+									{% if not email and not psswd %}
+									<div class="modal-body">
+										{% for field in authUserForm %}
+										<div class="form-group form-auth__container">
+											{{field.label_tag}}
+											<div class="container">
+												{{field}}
+												<p class="text-muted font-weight-light">{{field.help_text}}</p>
+											</div>
+										</div>
+										{% endfor %}
+										<div class="form-group">
+											<a href="{% url 'registration' type_registration='user' %}" class="link-info">Do you have an account? Registrate</a>
+										</div>
+									</div>
+
+									<div class="modal-footer">
+										<button class="btn btn-outline-success" type="submit">Войти</button>
+									</div>
+									{% else %}
+									<div class="modal-body">
+										<div class="form-group">
+											<p>Добро пожаловать {{email}}</p>
+										</div>
+									</div>
+									<div class="modal-footer">
+										<button class="btn btn-outline-info" type="submit">Выйти</button>
+									</div>
+									{% endif %}
+								</form>
+							</div>
+						</div>
+					</div>
+
+					{% block content %}{% endblock %}
+				</div>
+			</main>
+
+        	<footer class="footer bg-dark mt-4">
+				<!--- Create div for icons--->
+				<div class="container__icons">
+					<ul class="social__icons d-flex">
+						<li class="social__item twitter">
+							<a href="#" target="_blank">
+								<div class="icon icon__twitter"></div>
+							</a>
+						</li>
+						<li class="social__item facebook">
+							<a href="#" target="_blank">
+								<div class="icon icon__facebook"></div>
+							</a>
+						</li>
+						<li class="social__item instagram">
+							<a href="https://instagram.com/satbayev_sharaga.kaftk.narod?utm_medium=copy_link" target="_blank">
+								<div class="icon icon__instagram"></div>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</footer>
+		</div>
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+		{% block scripts %}{% endblock %}
+	</body>
+</html>

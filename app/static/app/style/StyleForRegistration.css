@@ -1,0 +1,28 @@
+.container-reg__form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-reg {
+    padding-right: 15px;
+    border-radius: 15px;
+    transform: translateY(35%);
+    background-color: rgba(186, 209, 206, 0.7);
+    box-shadow: 0px 0px 20px rgba(128, 96, 64, 0.5);
+}
+
+.container-reg label {
+    margin-left: 8px;
+    margin-top: 5px;
+    font-family: 'Comfortaa', cursive;
+    color: rgb(16, 16, 16)
+}
+
+.container-reg label:first-child {
+    margin-top: 4px;
+}
+
+.container-reg__btn {
+    justify-content:flex-end;
+}

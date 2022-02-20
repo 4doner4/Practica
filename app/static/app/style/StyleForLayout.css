@@ -1,0 +1,197 @@
+@import url('https://fonts.googleapis.com/css2?family=Comforter&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat&display=swap');
+
+
+/*Create default settings and stilization for glued footer*/
+body {
+	margin: 0;
+	height: 100vh;
+}
+
+.header {
+    height: 100px;
+    width: 100%;
+}
+
+.wrapper {
+	min-height: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+.main {
+	flex: 1 1 auto;
+}
+
+.footer {
+    height: 80px;
+}
+
+/*Create stilization for header and main icon*/
+
+.main-icon__img {
+    background: url('../images/icons/main_icon.jpg') bottom 75% center/ cover no-repeat;
+    height: 50px;
+    width: 50px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 5px rgba(255, 255, 255, 0);
+    transition: 1s;
+}
+
+.main-icon__img:hover {
+    box-shadow: 2px 2px 10px rgba(255, 255, 255, 0.5);
+}
+
+/*Create stilization for modal window*/
+.btn-close__button {
+    position: fixed;
+    top: 5%;
+    right: 5%;
+    height: 25px;
+    width: 25px;
+}
+
+.btn-close__lines,
+.btn-close__lines::before,
+.btn-close__lines::after {
+    position:absolute;
+    width: 20px;
+    height: 2px;
+    background-color: #000;
+    border-radius: 1px;
+}
+
+.btn-close__lines {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+}
+
+.btn-close__lines::before {
+    content: '';
+    transform: rotate(45deg);
+}
+
+.btn-close__lines::after {
+    content: '';
+    transform: rotate(-45deg);
+}
+
+/*Create stilization for close button*/
+
+.btn-close__button:hover .btn-close__lines::after,
+.btn-close__lines::before {
+    animation-duration: 2s;
+    animation-timing-function: cubic-bezier(.44,0,.54,1);
+}
+
+.btn-close__button:hover .btn-close__lines::after {
+    animation-name: walkingDiagonallyLeftLine;
+}
+
+.btn-close__button:hover .btn-close__lines::before {
+    animation-name: walkingDiagonallyRightLine;
+}
+
+/*Create stilization and animations for icons in the footer*/
+
+.container__icons {
+    margin-top: 18px;
+}
+
+.social__icons {
+    list-style-type: none;
+    padding: 0;
+}
+
+.social__icons li {
+    margin-left: 3%;
+}
+
+.icon {
+    width: 50px;
+    height: 50px;
+}
+
+.social__item {
+    height: 48px;
+    width: 48px;
+    border: 5px solid #fff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition-duration: 1s;
+}
+
+.icon__facebook {
+    background-image: url('../images/icons/icon_facebook.png');
+    background-size: 60%;
+    background-repeat: no-repeat;
+    background-position: center
+}
+
+.icon__twitter {
+    background-image: url('../images/icons/icon_twitter.png');
+    background-size: 60%;
+    background-repeat: no-repeat;
+    background-position: center
+}
+
+.icon__instagram {
+    background-image: url('../images/icons/icon_instagram.png');
+    background-size: 60%;
+    background-repeat: no-repeat;
+    background-position: center
+}
+
+.twitter:hover {
+    box-shadow: 0px 0px 20px rgba(0, 172, 238, 0.7);
+    border-color: rgba(0, 172, 238, 0.9)
+}
+
+
+.facebook:hover {
+    box-shadow: 0px 0px 20px rgba(59, 89, 152, 0.7);
+    border-color: rgba(59, 89, 152, 0.9);
+}
+
+.instagram:hover {
+    box-shadow: 0px 0px 20px rgba(193, 53, 132, 0.7);
+    border-color: rgba(193, 53, 132, 0.9);
+}
+
+.icon:hover {
+    animation: slightRotateOfIcon 700ms;
+}
+
+
+/*Animation with keyframes*/
+@keyframes slightRotateOfIcon {
+    50% {
+        transform: rotateZ(10deg);
+    }
+}
+
+@keyframes walkingDiagonallyRightLine {
+    0% {width: 20px}
+    25% {transform: translate(0%, 100%); width: 2px}
+    50% {width: 20px}
+    75% {transform: translate(100%, 0%); width:2px}
+}
+
+@keyframes walkingDiagonallyLeftLine {
+    0% {width: 20px}
+    25% {transform: translate(0%, 0%); width: 2px}
+    50% {width: 20px}
+    75% {transform: translate(100%, 100%); width:2px}
+}
+
+/*Create styles for form*/
+.form-auth__container label {
+    font-family: 'Comfortaa', cursive;
+}
+

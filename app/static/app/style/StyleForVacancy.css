@@ -1,0 +1,53 @@
+/*Create main container and add stilization for his child*/
+.vacancy-site__container {
+    margin: 0;
+    width: 70%;
+}
+
+.vacancy-company__container {
+    height: 150px;
+}
+
+.vacancy-company__title, .company-icon__container {
+    display: flex;
+    justify-content:center;
+    align-items: center;
+}
+
+/*Create title for vacancy*/
+.vacancy-company__title a {
+    font-size: 32px;
+    font-family: 'Caveat', cursive;
+    text-decoration:none;
+}
+
+.company-icon__background {
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+    background: url('../images/companies/company.jpg') center center / cover no-repeat;
+}
+
+/*Create stilization for main information in vacancy*/
+.vacancy-maininfo__container{
+    width: 50%;
+    margin-left: 3%;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+    border-radius: 20px;
+}
+
+/*Create styles for lists in main information*/
+.info-list {
+    list-style-type: none;
+    list-style-image: url('../images/icons/icon_for_ul.png');
+    list-style-position: outside;
+}
+
+/*Create fonts for vacancy*/
+.p-info {
+    font-family: 'Comfortaa', cursive;
+}
+
+.title-vacancy {
+    font-family: 'Pacifico', cursive;
+}

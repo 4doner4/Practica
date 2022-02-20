@@ -1,0 +1,35 @@
+{% extends "app/Layout/layout.html"%}
+{% load static%}
+{% block style %}
+<link href="{% static 'app/style/StyleForParallax.css'%}" rel="stylesheet" type="text/css">
+<link href="{% static 'app/style/StyleForRegistration.css' %}" rel="stylesheet" type="text/css">
+{% endblock style %}
+
+{% block content %}
+<div class="background__img"></div>
+
+{% if type_registration == 'user' %}
+<div class="container-fluid container-reg__form">
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group container-reg pb-2">
+            {% for field in regUserForm %}
+            {{field.label_tag}}
+            <div class="container d-flex justify-content-center">
+                    {{field}}
+            </div>
+            {% endfor %}
+            <div class="container container-reg__btn d-flex mt-2">
+                <button type="submit" class="btn btn-success">Register</button>
+            </div>
+        </div>
+
+    </form>
+</div>
+{% endif %}
+
+{% endblock content %}
+
+{% block scripts %}
+<script src="{% static 'app/scripts/ScriptForParallax.js' %}"></script>
+{% endblock scripts %}

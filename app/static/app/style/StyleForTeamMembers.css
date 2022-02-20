@@ -1,0 +1,79 @@
+/*Create main styles for cards*/
+.cards__container {
+	display: flex;
+	width:50%;
+}
+
+.card__container {
+	margin-left: 15%;
+	perspective: 1000px;
+	transform-style: preserve-3d;
+}
+
+
+.card__item {
+	border-radius: 15%;
+	box-shadow: 0px 0px 15px rgba(255, 165, 0, 1);
+	margin-top: 30px;
+	width: 250px;
+	height: 250px;
+	animation: flickCard 3s;
+	animation-iteration-count: infinite;
+	transition: transform 0.3s;
+}
+
+.first__person {
+	background: url('../images/first_person.png') no-repeat;
+	background-size: 75%;
+	background-position: bottom left;
+}
+
+.second__person {
+	background: url('../images/second_person.png') no-repeat;
+	background-size: 125%;
+	background-position: right bottom;
+}
+
+/*Create stilization for ul*/
+
+.info__list {
+	list-style-type: none;
+	padding: 0;
+	margin-top: 10px;
+}
+
+p {
+	font-family: 'Comfortaa', cursive;
+	font-size: 20px;
+}
+
+.developer__info h1 {
+	margin-left: 50%;
+	transform: translate(-15%);
+	font-family: 'Comforter', cursive;
+}
+
+/*Create stilization for line under text card*/
+.line {
+    transition: 1.5s;
+    margin-top: -10px;
+    height: 3px;
+    width: 0px;
+    background-color: rgb(255, 165, 0);
+    box-shadow: 0px 0px 20px rgba(255, 165, 0, 0.7);
+}
+
+/*Create animation for cards with @keyframes*/
+@keyframes flickCard {
+	25% {box-shadow: 0px 0px 15px rgba(255, 165, 0, 0.75);}
+	50% {box-shadow: 0px 0px 15px rgba(255, 165, 0, 0.5);}
+	75% {box-shadow: 0px 0px 15px rgba(255, 165, 0, 0.75);}
+}
+
+
+/*Adding @media for adaptive site*/
+@media screen and (max-width: 600px) {
+	.cards__container {
+		display: block;
+	}
+}

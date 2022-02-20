@@ -1,0 +1,9 @@
+.background__img {
+    position: fixed;
+    height: 110%;
+    width: 110%;
+    top: -10%;
+    left: -10%;
+    z-index: -1;
+    background: url('../images/background_img.jpg')
+}

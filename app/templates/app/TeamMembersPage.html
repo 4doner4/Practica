@@ -1,0 +1,45 @@
+{% extends "app/Layout/layout.html"%}
+
+{% block style %}
+<link rel="stylesheet" type="text/css" href="/static/app/style/StyleForTeamMembers.css">
+{% endblock %}
+
+{% block content %}
+<div class="developer__info">
+	<h1>Our developers:</h1>
+</div>
+<div class="cards__container">
+    <div class="card__container">
+        <div class="card__item first__person"></div>
+		<div class="information">
+			<ul class="info__list">
+				<li>
+					<p>Leha</p>
+				</li>
+				<li>
+					<p>Verstapen</p>
+				</li>
+			</ul>
+			<div class="line"></div>
+		</div>
+    </div>
+	<div class="card__container">
+		<div class="card__item second__person"></div>
+		<div class="information">
+			<ul class="info__list">
+				<li>
+					<p>Doner</p>
+				</li>
+				<li>
+					<p>Hemelton</p>
+				</li>
+			</ul>
+			<div class="line"></div>
+		</div>
+	</div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="/static/app/scripts/ScriptForTeamMembers.js"></script>
+{% endblock %}

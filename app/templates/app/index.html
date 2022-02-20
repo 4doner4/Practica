@@ -1,0 +1,72 @@
+{% extends "app/Layout/layout.html" %}
+
+{% block style %}
+    <link rel="stylesheet" type="text/css" href="../static/app/style/MainStyle.css" />
+{% endblock %}
+
+{% block content %}
+
+<div class="main_div">
+{# slider #}
+<div class="slider-container">
+  <a class="arrow" id="rightArrow" ><div class="Rarrow-image" type="button" > </div></a>
+
+    <div class="items" id="items">
+      <div class="item" >
+          <h1> content</h1>
+          <p>kjhjhjhjhjhklhkgkhgn rkh</p>
+        <img id="item_images1" type="image" />
+      </div>
+      <div class="item" >
+          <h1> content</h1>
+          <p>sdfkhsdkfjskdfjsdkfjsdkfjskd</p>
+        <img id="item_images2" type="image" />
+      </div>
+      <div class="item" >
+          <h1>content</h1>
+          <p>asdjkdsfsjfdsfdsfjds</p>
+        <img id="item_images3" type="image" />
+      </div>
+         <div class="item" >
+          <h1>content</h1>
+          <p>asdjkdsfsjfdsfdsfjds</p>
+        <img id="item_images3" type="image" />
+      </div>
+
+         <div class="item" >
+          <h1>content</h1>
+          <p>asdjkdsfsjfdsfdsfjds</p>
+        <img id="item_images3" type="image" />
+      </div>
+
+
+    </div>
+
+  <a class="arrow" id="leftArrow" ><div class="Larrow-image" type="button"> </div> </a>
+</div>
+ </div>
+
+ {#grid#}
+<div class="wrappergrid">
+  <a href="#"> <div class="col">content   </div></a>
+  <a href="#"> <div class="col">content   </div></a>
+  <a href="#"> <div class="col">content   </div></a>
+  <a href="#"> <div class="col">content   </div></a>
+  <a href="#"> <div class="col">content   </div></a>
+  <a href="#"> <div class="col">content   </div></a>
+  <a href="#"> <div class="col">content   </div></a>
+  <a href="#"> <div class="col">content   </div></a>
+
+
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+    {% load static %}
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="../static/app/scripts/ScriptForSlider.js"></script>
+
+{% endblock %}
