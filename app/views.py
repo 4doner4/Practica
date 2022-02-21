@@ -1,8 +1,11 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from app import forms
-
+from .models import Vacancies
 def index(request):
+    vacancies = Vacancies.objects.all()
+
+
     if request.method == "POST":
         authUserForm = forms.AuthUserForm(request.POST)
         if authUserForm.is_valid():
@@ -26,7 +29,9 @@ def index(request):
         {"email": request.session.get('emailUser', False),
          "psswd": request.session.get('psswdUser', False),
          "statusBtnAuth": True,
-         "authUserForm": authUserForm}
+         'vacancies': vacancies,
+         "authUserForm": authUserForm},
+
     )
 
 def TeamMembers(request):

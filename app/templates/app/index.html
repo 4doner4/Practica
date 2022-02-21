@@ -10,34 +10,15 @@
 {# slider #}
 <div class="slider-container">
   <a class="arrow" id="rightArrow" ><div class="Rarrow-image" type="button" > </div></a>
-
     <div class="items" id="items">
-      <div class="item" >
-          <h1> content</h1>
-          <p>kjhjhjhjhjhklhkgkhgn rkh</p>
-        <img id="item_images1" type="image" />
-      </div>
-      <div class="item" >
-          <h1> content</h1>
-          <p>sdfkhsdkfjskdfjsdkfjsdkfjskd</p>
-        <img id="item_images2" type="image" />
-      </div>
-      <div class="item" >
-          <h1>content</h1>
-          <p>asdjkdsfsjfdsfdsfjds</p>
-        <img id="item_images3" type="image" />
-      </div>
-         <div class="item" >
-          <h1>content</h1>
-          <p>asdjkdsfsjfdsfdsfjds</p>
-        <img id="item_images3" type="image" />
-      </div>
+    {% for el in vacancies%}
+        <div class="item" >
+            <h1>{{el.title}}</h1>
+            <h2>{{el.salary}}</h2>
+            <img class="item_images" type="image" src = "{{el.Imagesrs}}"/>
+        </div>
 
-         <div class="item" >
-          <h1>content</h1>
-          <p>asdjkdsfsjfdsfdsfjds</p>
-        <img id="item_images3" type="image" />
-      </div>
+    {% endfor %}
 
 
     </div>
@@ -47,17 +28,12 @@
  </div>
 
  {#grid#}
+
 <div class="wrappergrid">
-  <a href="#"> <div class="col">content   </div></a>
-  <a href="#"> <div class="col">content   </div></a>
-  <a href="#"> <div class="col">content   </div></a>
-  <a href="#"> <div class="col">content   </div></a>
-  <a href="#"> <div class="col">content   </div></a>
-  <a href="#"> <div class="col">content   </div></a>
-  <a href="#"> <div class="col">content   </div></a>
-  <a href="#"> <div class="col">content   </div></a>
+        {% for el in vacancies%}
+         <a href="#"> <div class="col"><p>{{el.title}}</p> <p>{{el.salary}}</p>  </div></a>
 
-
+        {% endfor %}
 </div>
 
 {% endblock %}

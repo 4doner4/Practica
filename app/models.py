@@ -1,3 +1,10 @@
 from django.db import models
 
-# Create your models here.
+class Vacancies(models.Model):
+    title = models.CharField('Name', max_length= 50)
+    salary = models.CharField('Salary', max_length=20)
+    text = models.TextField('Text')
+    date = models.DateField('Data')
+    Imagesrs = models.TextField('ImageSrs')
+    def __str__(self):
+        return self.title
