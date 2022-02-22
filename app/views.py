@@ -98,3 +98,5 @@ def Registration(request, type_registration):
         "regUserForm": regUserForm,
         "type_registration": type_registration}
     )
+def CreateVacancy(request):
+    return render(request, 'app/CrateVacancy.html')

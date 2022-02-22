@@ -31,7 +31,7 @@
 
 <div class="wrappergrid">
         {% for el in vacancies%}
-         <a href="#"> <div class="col"><p>{{el.title}}</p> <p>{{el.salary}}</p>  </div></a>
+         <a href="#"> <div class="col"><h4>{{el.title}}</h4> <p>{{el.salary}}</p> <img class="gridimages" type="image" src = "{{el.Imagesrs}}"/> </div></a>
 
         {% endfor %}
 </div>

@@ -1,5 +1,5 @@
 .main_div {
-    height: 450px;
+
     width: 90%;
     padding-left: 100px;
     padding-right: 100px;
@@ -52,10 +52,7 @@ body{
     transition: 1s;
 }
 .item_images {
-    background-size: auto;
-    background-repeat: no-repeat;
-    background-position: bottom;
-    position: center;
+
 }
 
 .slider-container {
@@ -88,6 +85,11 @@ body{
 }
 
 .item {
+    background-image: url('../images/1.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    position: center;
     width: 400px;
     height: 200px;
     position: absolute;
@@ -100,11 +102,11 @@ body{
 .wrappergrid {
     width: 70%;
     margin: 0 auto;
-    margin-top: 0px;
+    margin-top: 50px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 20px;
-    height: 500px;
+    height: 300px;
 }
 
 .col {
@@ -116,7 +118,10 @@ body{
     background-color: #343a40;
     color: white;
 }
+.gridimages{
+    background-color: black;
 
+}
 .col:hover{
     transform: scale(1.05);
     
