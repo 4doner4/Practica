@@ -1,0 +1,27 @@
+{% extends "app/Layout/layout.html" %}
+
+{% block style %}
+    <link rel="stylesheet" type="text/css" href="../static/app/style/StyleForCreateVacancy.css" />
+{% endblock %}
+
+{% block content %}
+ <div class = "main_div">
+    <form method = "post">
+        {%csrf_token%}
+        {{form.title}}
+        {{form.salary}}
+        {{form.email}}
+        {{form.text}}
+        {{form.date}}
+        {{form.Imagesrs}}
+        {{form.Telephonenumber}}
+        <span>{{error}}</span>
+        <button class = " btn btn-success" type = "submit"> Добавить запись</button>
+    </form>
+ </div>
+{% endblock %}
+
+{% block scripts %}
+
+
+{% endblock %}

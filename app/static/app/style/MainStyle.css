@@ -1,9 +1,7 @@
 .main_div {
-
     width: 90%;
     padding-left: 100px;
     padding-right: 100px;
-
     margin: 5px auto;
     justify-content: center;
 }
@@ -91,7 +89,7 @@ body{
     background-position: bottom;
     position: center;
     width: 400px;
-    height: 200px;
+    max-height: 200px;
     position: absolute;
     transition: all ease 1s;
     top: 5%;
@@ -106,7 +104,7 @@ body{
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 20px;
-    height: 300px;
+
 }
 
 .col {

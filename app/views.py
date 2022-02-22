@@ -1,7 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpResponseRedirect
 from app import forms
 from .models import Vacancies
+from .forms import VacancyForm
+
 def index(request):
     vacancies = Vacancies.objects.all()
 
@@ -99,4 +101,18 @@ def Registration(request, type_registration):
         "type_registration": type_registration}
     )
 def CreateVacancy(request):
-    return render(request, 'app/CrateVacancy.html')
+    error = ''
+    if request.method == "POST":
+        form = VacancyForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('main')
+        else:
+            error = 'Форма заполнена неверно'
+    form = VacancyForm()
+    data = {
+        'form': form,
+        'error': error
+    }
+
+    return render(request, 'app/CreateVacancy.html', data)
