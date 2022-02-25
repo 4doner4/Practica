@@ -8,9 +8,8 @@
  <div class = "main_div">
     <form method = "post">
         {%csrf_token%}
-        <h3> Добавление резюме </h3>
 
-        {% for el in resum%}
+        {% for el in resume%}
         <div class="item" >
             <h1>{{el.name}}</h1>
             <h2>{{el.surname}}</h2>
@@ -23,13 +22,10 @@
 
     {% endfor %}
 
-        <span>{{error}}</span>
-        <button class = " btn btn-success " type = "submit"> Добавить запись</button>
     </form>
  </div>
 {% endblock %}
 
 {% block scripts %}
-
 
 {% endblock %}

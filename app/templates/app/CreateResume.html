@@ -9,17 +9,14 @@
     <form method = "post">
         {%csrf_token%}
         <h3> Добавление резюме </h3>
-        {{form.name}}
-        {{form.surname}}
-        {{form.email}}
-        {{form.text}}
-        {{form.experience}}
-        {{form.date}}
-        {{form.Imagesrs}}
-        {{form.Telephonenumber}}
-
-
-    {% endfor %}
+            {{form.name}}
+            {{form.surname}}
+            {{form.email}}
+            {{form.text}}
+            {{form.experience}}
+            {{form.date}}
+            {{form.Imagesrs}}
+            {{form.Telephonenumber}}
 
         <span>{{error}}</span>
         <button class = " btn btn-success " type = "submit"> Добавить запись</button>

@@ -27,5 +27,6 @@ urlpatterns = [
     path('AboutUs', views.AboutUs, name="AboutUs"),
     path('CreateVacancy', views.CreateVacancy, name="CreateVacancy"),
     path('CreateResume', views.CreateResume, name="CreateResume"),
+    path('Resume', views.Resume, name="Resume"),
     path('admin/', admin.site.urls),
 ]

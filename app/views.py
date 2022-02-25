@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,  redirect
 from django.http import HttpResponseRedirect
 from app import forms
 from .models import Vacancies
@@ -118,9 +118,9 @@ def CreateVacancy(request):
     }
 
     return render(request, 'app/CreateVacancy.html', data)
-
+resume = Resume.objects.all()
 def CreateResume(request):
-    resume = Resume.objects.all()
+
     error = ''
     if request.method == "POST":
         form = ResumeForm(request.POST)
@@ -133,6 +133,12 @@ def CreateResume(request):
     data = {
         'form': form,
         'error': error,
+        'resume': resume
+    }
+
+    return render(request, 'app/CreateResume.html', data)
+def Resume(request):
+    data = {
         'resume': resume
     }
 
