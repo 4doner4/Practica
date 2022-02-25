@@ -1,21 +1,26 @@
 {% extends "app/Layout/layout.html" %}
 
 {% block style %}
-    <link rel="stylesheet" type="text/css" href="../static/app/style/StyleForCreateVacancy.css" />
+    <link rel="stylesheet" type="text/css" href="../static/app/style/StyleForCreateResume.css" />
 {% endblock %}
 
 {% block content %}
  <div class = "main_div">
     <form method = "post">
         {%csrf_token%}
-        <h3> Добавление вакансии </h3>
-        {{form.title}}
-        {{form.salary}}
+        <h3> Добавление резюме </h3>
+        {{form.name}}
+        {{form.surname}}
         {{form.email}}
         {{form.text}}
+        {{form.experience}}
         {{form.date}}
         {{form.Imagesrs}}
         {{form.Telephonenumber}}
+
+
+    {% endfor %}
+
         <span>{{error}}</span>
         <button class = " btn btn-success " type = "submit"> Добавить запись</button>
     </form>

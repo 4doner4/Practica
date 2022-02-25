@@ -1,0 +1,35 @@
+{% extends "app/Layout/layout.html" %}
+
+{% block style %}
+    <link rel="stylesheet" type="text/css" href="../static/app/style/Resume.css" />
+{% endblock %}
+
+{% block content %}
+ <div class = "main_div">
+    <form method = "post">
+        {%csrf_token%}
+        <h3> Добавление резюме </h3>
+
+        {% for el in resum%}
+        <div class="item" >
+            <h1>{{el.name}}</h1>
+            <h2>{{el.surname}}</h2>
+            <h2>{{el.email}}</h2>
+            <h2>{{el.text}}</h2>
+            <h2>{{el.experience}}</h2>
+            <h2>{{el.date}}</h2>
+            <h2>{{el.Telephonenumber}}</h2>
+        </div>
+
+    {% endfor %}
+
+        <span>{{error}}</span>
+        <button class = " btn btn-success " type = "submit"> Добавить запись</button>
+    </form>
+ </div>
+{% endblock %}
+
+{% block scripts %}
+
+
+{% endblock %}

@@ -2,7 +2,9 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponseRedirect
 from app import forms
 from .models import Vacancies
+from .models import Resume
 from .forms import VacancyForm
+from .forms import ResumeForm
 
 def index(request):
     vacancies = Vacancies.objects.all()
@@ -116,3 +118,22 @@ def CreateVacancy(request):
     }
 
     return render(request, 'app/CreateVacancy.html', data)
+
+def CreateResume(request):
+    resume = Resume.objects.all()
+    error = ''
+    if request.method == "POST":
+        form = ResumeForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('main')
+        else:
+            error = 'Форма заполнена неверно'
+    form = ResumeForm()
+    data = {
+        'form': form,
+        'error': error,
+        'resume': resume
+    }
+
+    return render(request, 'app/CreateResume.html', data)
