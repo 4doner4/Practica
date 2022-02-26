@@ -142,4 +142,4 @@ def Resume(request):
         'resume': resume
     }
 
-    return render(request, 'app/CreateResume.html', data)
+    return render(request, 'app/Resume.html', data)
