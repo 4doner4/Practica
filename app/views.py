@@ -6,9 +6,9 @@ from .models import Resume
 from .forms import VacancyForm
 from .forms import ResumeForm
 
+
 def index(request):
     vacancies = Vacancies.objects.all()
-
 
     if request.method == "POST":
         authUserForm = forms.AuthUserForm(request.POST)
@@ -76,12 +76,14 @@ def AboutUs(request):
     )
 
 def Vacancy(request, id_vacancy):
-    data = {"something": id_vacancy, "authUserForm": forms.AuthUserForm}
+    vacancies = Vacancies.objects.filter(id=id_vacancy)
+    data = {"something": id_vacancy, "authUserForm": forms.AuthUserForm, 'vacancies': vacancies}
     return render(
-        request,
-        "app/Vacancy.html",
-        context=data
-    )
+            request,
+            "app/Vacancy.html",
+            context=data
+        )
+
 
 def Registration(request, type_registration):
     if request.method == "POST":
@@ -138,6 +140,7 @@ def CreateResume(request):
 
     return render(request, 'app/CreateResume.html', data)
 def Resume(request):
+
     data = {
         'resume': resume
     }

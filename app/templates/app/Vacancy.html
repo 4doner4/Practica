@@ -7,17 +7,20 @@
 {% block content%}
 <div class="container vacancy-site__container ml-4">
     <!--- This information row for title of job --->
-    <div class="row d-block">
+    {% for el in vacancies%}
+        <div class="row d-block">
         <div class="col-6">
-            <h2 class="title-vacancy text-dark">.NET/C# Разработчик</h2>
+            <h2 class="title-vacancy text-dark">{{el.title}}</h2>
         </div>
         <div class="col-6">
-            <h5 class="title-vacancy text-dark">от 150000 до 350000 тнг. на руки</h5>
+            <h5 class="title-vacancy text-dark">{{el.salary}}</h5>
         </div>
         <!--- This information row include name company and logo --->
         <div class="row vacancy-company__container mt-3">
             <div class="col-3 vacancy-company__title ml-4">
-                <a href="#" class="a-info text-secondary">Future with Kunikeev</a>
+                <h5 class="title-vacancy text-secondary">Email addres: {{el.email}}</h5></br>
+                <h5 class="title-vacancy text-secondary">Phonenumber: {{el.Telephonenumber}}</h5>
+                <h5 class="title-vacancy text-secondary">Date: {{el.date}}</h5>
             </div>
             <div class="col company-icon__container">
                 <a href="#">
@@ -26,43 +29,16 @@
             </div>
         </div>
         <!--- --->
-        <div class="row d-block ml-4">
-            <p class="p-info">Требуемый опыт работы: 1-3 года</p>
-            <p class="p-info">Полная занятость</p>
-        </div>
         <!--- This row include text about company and conditions --->
         <div class="row">
             <div class="container vacancy-maininfo__container">
                 <div class="info-about__company mt-2">
-                    <p class="p-info">Мы делаем собственную микросервисную систему, которой пользуются тысячи сотрудников компании по всей стране.
-                        Наша команда расширяется, поэтому мы в поиске C# разработчика, ответственного коллегу, который любит свое дело, готов осваивать лучшие практики и делиться своими знаниями с командой.
-                        Мы гарантируем интересные задачи, дружный коллектив, ценим гибкие подходы к разработке и всегда готовы прислушаться к экспертному мнению. Мы делаем крутой сервис и привлекаем разработчиков, готовых погрузиться в интересную работу вместе с нами.</p>
+                    <p class="text-center" >{{el.text}}</p>
                 </div>
-                <div class="info-about__employee">
-                    <h6>Обязанности:</h6>
-                    <ul class="info-list">
-                        <li class="info-list__item">
-                            <p class="p-info">Уверенно знать .Net Core</p>
-                        </li>
-                        <li class="info-list__item">
-                            <p class="p-info">Уметь работать с Git</p>
-                        </li>
-                        <li class="info-list__item">
-                            <p class="p-info">Знать SQL и иметь опыт работы с реляционными СУБД</p>
-                        </li>
-                    </ul>
-                    <h6>Условия:</h6>
-                    <ul class="info-list">
-                        <li class="info-list__item">
-                            <p class="p-info">Гибкий рабочий график</p>
-                        </li>
-                        <li class="info-list__item">
-                            <p class="p-info">Проффесиональное развитие</p>
-                        </li>
-                    </ul>
-                </div>
+
             </div>
         </div>
-    </div>
+        </div>
+    {% endfor %}
 </div>
 {%endblock%}

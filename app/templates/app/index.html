@@ -9,7 +9,8 @@
 <ul class="carousel">
     {% for el in vacancies%}
         <li class="carousel__item">
-            <a href="#"><div class="carousel__item-wrapper">
+            <a href="{% url 'vacancy' id_vacancy=el.id %}"><div class="carousel__item-wrapper">
+                {{el.id}}
                 <h4>{{el.title}}</h4>
                 <h5>{{el.salary}}</h5></div>
                 <img class="gridimages" type="image" src = "{{el.Imagesrs}}"/>
@@ -28,7 +29,7 @@
 
 <div class="wrappergrid">
         {% for el in vacancies%}
-         <a href="#">
+         <a href="{% url 'vacancy' id_vacancy=el.id %}">
              <div class="col">
                  <h4>{{el.title}}</h4>
                  <p>{{el.salary}}</p>
