@@ -1,28 +1,51 @@
-.container-reg__form {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.container-reg {
-    padding-right: 15px;
+/*Create form for registration page*/
+.container__form {
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
     border-radius: 15px;
-    transform: translateY(35%);
-    background-color: rgba(186, 209, 206, 0.7);
-    box-shadow: 0px 0px 20px rgba(128, 96, 64, 0.5);
+    background-color: rgba(221, 221, 221, 0.9);
+    width: 500px;
 }
 
-.container-reg label {
-    margin-left: 8px;
-    margin-top: 5px;
+.container-reg__items label, small {
     font-family: 'Comfortaa', cursive;
-    color: rgb(16, 16, 16)
 }
 
-.container-reg label:first-child {
-    margin-top: 4px;
+hr {
+    margin-top:80px;
 }
 
-.container-reg__btn {
-    justify-content:flex-end;
+.form-check-input div {
+    margin-left: 40px;
 }
+
+.error__info {
+    font-family: 'Pacifico', cursive;
+    font-size: 18px;
+}
+/*Create animation for our plate*/
+@keyframes PopUpForm{
+    0% {
+        transform:rotate(30deg) translateX(-100%);
+    }
+    50% {
+        transform: rotate(-10deg) translateX(10%);
+    }
+    100% {
+        transform: rotate(0deg) translateX(0%);
+    }
+}
+
+/*Create adaptive for our registration page*/
+@media screen and (max-width: 500px) {
+    .container__form {
+        width: 100%;
+    }
+}
+
+@media screen and (min-width: 500px) {
+    .container__form {
+        animation-name: PopUpForm;
+        animation-duration: 5s;
+    }
+}
+

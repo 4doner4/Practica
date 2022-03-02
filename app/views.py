@@ -1,28 +1,24 @@
 from django.shortcuts import render,  redirect
 from django.http import HttpResponseRedirect
+from django.core.exceptions import ObjectDoesNotExist
+from LibraryForProject.AuthFormHelper import AuthFormHelp
 from app import forms
+from app import models
 from .models import Vacancies
 from .models import Resume
 from .forms import VacancyForm
 from .forms import ResumeForm
 
 
+authFormHelper = AuthFormHelp()
+
 def index(request):
     vacancies = Vacancies.objects.all()
 
     if request.method == "POST":
-        authUserForm = forms.AuthUserForm(request.POST)
-        if authUserForm.is_valid():
-            request.session['emailUser'] = authUserForm.cleaned_data["email"]
-            request.session['psswdUser'] = authUserForm.cleaned_data["psswd"]
-        else:
-            try:
-                del request.session['emailUser']
-                del request.session['psswdUser']
-            except KeyError:
-                return HttpResponseRedirect('/')
+        authUserForm = authFormHelper.addPostMethodForLayoutForm(request)
+        if authUserForm == None:
             return HttpResponseRedirect('/')
-
 
     else:
         authUserForm = forms.AuthUserForm()
@@ -30,48 +26,50 @@ def index(request):
     return render(
         request,
         "app/index.html",
-        {"email": request.session.get('emailUser', False),
-         "psswd": request.session.get('psswdUser', False),
+        {"account": request.session.get('account', False),
          "statusBtnAuth": True,
          'vacancies': vacancies,
          "authUserForm": authUserForm},
 
     )
 
-def TeamMembers(request):
-    names = ["Leha", "Doner"]
-    surnames = ["Verstapen", "Hemelton"]
-    data = {"names" : names, "surnames": surnames, "authUserForm": forms.AuthUserForm}
-    return render(
-        request,
-        "app/TeamMembersPage.html",
-        context = data
-    )
-
-def ProjectInformation(request):
-    data = {"authUserForm": forms.AuthUserForm}
-    return render(
-        request,
-        "app/ProjectInformationPage.html",
-        context=data
-    )
-
-def TeamInfo(request):
-    data = {"authUserForm": forms.AuthUserForm}
-    return render(
-        request,
-        "app/TeamInformationPage.html",
-        context=data
-    )
 
 def AboutUs(request):
     """Renders the about page."""
 
+    if request.method == "POST":
+        authUserForm = authFormHelper.addPostMethodForLayoutForm(request)
+        if authUserForm == None:
+            return HttpResponseRedirect('/about_us')
+    else:
+        authUserForm = forms.AuthUserForm()
+
     return render(
         request,
-        'app/AboutUs.html',
-        {
 
+        "app/AboutUs.html",
+        {
+            "email": request.session.get('usernameUser', False),
+            "psswd": request.session.get('psswdUser', False),
+            "statusBtnAuth": True,
+            "authUserForm": authUserForm,
+            "persons": [{
+                "person_id": "first__person",
+                "name": "Leha",
+                "surname": "Verstappen",
+                "address": "Golubaya Ustrica",
+                "email": "nenaebnaden'gi@com",
+                "telephone": '8-800-353-55-55'
+            },
+                {
+                    "person_id": "second__person",
+                    "name": "Doner",
+                    "surname": "Hamilton",
+                    "adress": "Psihushka d2",
+                    "email": "300$@com",
+                    "telephone": "8-800-555-35-35"
+
+                }]
         }
     )
 
@@ -85,25 +83,61 @@ def Vacancy(request, id_vacancy):
         )
 
 
-def Registration(request, type_registration):
+def Registration(request):
     if request.method == "POST":
-        regUserForm = forms.RegistrationUserForm(request.POST)
-
-        if regUserForm.is_valid():
-            i = 1
+        regForm = forms.RegistrationForm(request.POST)
+        if regForm.is_valid():
+           try:
+               user = models.Accounts.objects.get(usernameAcc=request.POST.get("reg_username", False))
+               return render(
+                   request,
+                   "app/registrationPage.html",
+                   {
+                       "regForm": regForm,
+                       "errors": "This username exist, let's create new username"
+                   }
+               )
+           except ObjectDoesNotExist:
+               psswd, chk_psswd = regForm.cleaned_data["reg_psswd"], regForm.cleaned_data["reg_chkpsswd"]
+               if psswd == chk_psswd:
+                   account = models.Accounts()
+                   account.usernameAcc = regForm.cleaned_data["reg_username"]
+                   account.psswdAcc = psswd
+                   account.emailAcc = regForm.cleaned_data["reg_email"]
+                   account.roles = models.Roles(id=regForm.cleaned_data["regUserCompChoice"])
+                   account.save()
+                   return HttpResponseRedirect('/')
+               else:
+                   return render(
+                       request,
+                       "app/RegistrationPage.html",
+                       {
+                           "regForm": regForm,
+                           "errors": "Passwords don't match"
+                       }
+                   )
         else:
-            i = 2
+            return render(
+                request,
+                "app/RegistrationPage.html",
+                {
+                    "regForm": regForm,
+                    "errors": "Your data is not valid. Please rewrite that form!"
+                }
+            )
+
     else:
-        regUserForm = forms.RegistrationUserForm()
+        regForm = forms.RegistrationForm()
 
     return render(
         request,
         "app/RegistrationPage.html",
         {
-        "statusBtnAuth": False,
-        "regUserForm": regUserForm,
-        "type_registration": type_registration}
+            "regForm": regForm,
+            "errors": False
+        }
     )
+
 def CreateVacancy(request):
     error = ''
     if request.method == "POST":

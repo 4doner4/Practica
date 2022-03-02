@@ -27,10 +27,10 @@
 								<a class="nav-link" href="{% url 'Resume' %}">Resume</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" href="{% url 'CreateVacancy' %}">CreateVacancy</a>
+								<a class="nav-link" href="{% url 'CreateResume' %}">CreateResume</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" href="{% url 'CreateResume' %}">CreateResume</a>
+								<a class="nav-link" href="{% url 'CreateVacancy' %}">CreateVacancy</a>
 							</li>
 						</ul>
 						<form class="form-inline my-2 lg-0">
@@ -38,7 +38,7 @@
 							<button type="button" class="btn btn-outline-info mx-2">Поиск</button>
 						</form>
 						<!--- Create button for call modal window --->
-						{% if not email and not psswd%}
+						{% if not account %}
 						{% if statusBtnAuth %}
 						<button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#modalAuth">Войти</button>
 						{% endif %}
@@ -64,29 +64,26 @@
 										</a>
 									</div>
 
-									{% if not email and not psswd %}
+									{% if not account %}
 									<div class="modal-body">
 										{% for field in authUserForm %}
 										<div class="form-group form-auth__container">
 											{{field.label_tag}}
-											<div class="container">
-												{{field}}
-												<p class="text-muted font-weight-light">{{field.help_text}}</p>
-											</div>
+											{{field}}
+											<small class="form-text text-muted">{{field.help_text}}</small>
 										</div>
 										{% endfor %}
 										<div class="form-group">
-											<a href="{% url 'registration' type_registration='user' %}" class="link-info">Do you have an account? Registrate</a>
+											<a href="{% url 'registration' %}" class="link-info">Do you have an account? Registrate</a>
 										</div>
 									</div>
-
 									<div class="modal-footer">
 										<button class="btn btn-outline-success" type="submit">Войти</button>
 									</div>
 									{% else %}
 									<div class="modal-body">
 										<div class="form-group">
-											<p>Добро пожаловать {{email}}</p>
+											<p>Добро пожаловать {{account}}</p>
 										</div>
 									</div>
 									<div class="modal-footer">
@@ -102,31 +99,39 @@
 				</div>
 			</main>
 
-        	<footer class="footer bg-dark mt-4">
+        	<footer class="footer bg-dark mt-4 d-flex">
 				<!--- Create div for icons--->
 				<div class="container__icons">
-					<ul class="social__icons d-flex">
-						<li class="social__item twitter">
-							<a href="#" target="_blank">
+					<ul class="social__icons d-flex pl-4">
+						<li class="social__item twitter ml-4">
+							<a href="https://www.youtube.com/watch?v=Fa9p6oq-Pk4" target="_blank">
 								<div class="icon icon__twitter"></div>
 							</a>
 						</li>
-						<li class="social__item facebook">
-							<a href="#" target="_blank">
+						<li class="social__item facebook ml-4">
+							<a href="https://www.youtube.com/watch?v=gd0wRdkT4Ac" target="_blank">
 								<div class="icon icon__facebook"></div>
 							</a>
 						</li>
-						<li class="social__item instagram">
+						<li class="social__item instagram ml-4">
 							<a href="https://instagram.com/satbayev_sharaga.kaftk.narod?utm_medium=copy_link" target="_blank">
 								<div class="icon icon__instagram"></div>
 							</a>
 						</li>
 					</ul>
 				</div>
+
+				<div class="container d-flex justify-content-end align-items-center">
+					<div class="social__item container-about__icon">
+						<a href="{% url 'AboutUs' %}">
+							<div class="icon icon-item__about"></div>
+						</a>
+					</div>
+				</div>
 			</footer>
 		</div>
 		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 		{% block scripts %}{% endblock %}

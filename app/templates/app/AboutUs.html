@@ -1,93 +1,56 @@
-{% extends "app/Layout/layout.html" %}
+{% extends 'app/Layout/layout.html' %}
+{% load static %}
 
 {% block style %}
-   <link rel="stylesheet" type="text/css" href="..\static\app\style\AboutUs.css" />
-{% endblock %}
+<link href="{% static 'app/style/AboutUs.css' %}" rel="stylesheet" type="text/css">
+{% endblock style %}
+
 
 {% block content %}
+<div class="developer__info">
+    <h1>Our developers:</h1>
+</div>
 
-	<div class="main">
-		<div class="developer__info">
-			<h1>Our developers:</h1>
-		</div>
-		<div class="cards__container ">
-			<div class="card">
-				<div class="card__item first__person"></div>
-				<div class="information">
-					<ul class="info__list">
-						<li>
-							<p>Billy</p>
-						</li>
-						<li>
-							<p>Herrington</p>
-						</li>
-						 <li>
-							 <p>
-								Addres: Goluabaya Ustrica
-							</p>
-						</li>
-						 <li>
-							 <p>
-								Email: nenaebnaden'gi@com
-							</p>
-						</li>
-						 <li>
-							 <p>
-								Telephone: 8-800-353-55-55
-							 </p>
-						</li>
-					</ul>
-				</div>
-			</div>
-			<div class="card">
-				<div class="card__item second__person"></div>
-				<div class="information">
-					<ul class="info__list">
-						<li>
-							<p>Lysii</p>
-						</li>
-						<li>
-							<p>Ded</p>
-						</li>
-						 <li>
-							 <p>
-								Addres: Psihushka d2
-							</p>
-						</li>
-						 <li>
-							 <p>
-								Email: 300$@com
-							</p>
-						</li>
-						 <li>
-							 <p>
-								Telephone: 8-800-555-35-35
-							 </p>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-		<p>
-			<div >
-				<h1>
-					Информациа о курсе
-				</h1>
-				<p>
-					В этом курсовом проекте, мы решили создать сайт в стиле системы поиска работы онлайн.
-				</p>
-				<p>
-					К примеру, таких сайтов: headhunter, jooble.Для этого проекта мы использовали фреймворк - Django.
-				</p>
-				<p>
-					Также использовались: a) языки разметки (HTML, CSS), б) языки программирования (JS, Python),в) фреймворк для JS (jQuery) и набор инструментов (Bootstrap).
-				</p>
-			</div>
-	</div>
+<div class="cards__container">
+    {% for person in persons %}
+    <div class="card__container">
+        <div class="card__item {{person.person_id}}"></div>
+        <div class="information">
+            <ul class="info__list">
+                <li>
+                    <p>{{person.name}}</p>
+                </li>
+                <li>
+                    <p>{{person.surname}}</p>
+                </li>
+                <li>
+                    <p>{{person.address}}</p>
+                </li>
+                <li>
+                    <p>{{person.email}}</p>
+                </li>
+                <li>
+                    <p>{{person.telephone}}</p>
+                </li>
+            </ul>
+        </div>
+        <div class="container-text__underline"></div>
+    </div>
+    {% endfor %}
+</div>
+<div class="container-fluid d-flex justify-content-center container-project">
+    <div class="container container-project__info">
+        <h1>Информация о курсе</h1>
+        <p>В этом курсовом проекте, мы решили создать сайт в стиле поиска работы онлайн<br/>
+            К примеру, таких сайтов: headhunter, jooble. Для этого проекта мы использовали фреймворк Django<br/>
+            Также использовались: а) языки разметки (HTML, CSS), б) языки программирования (Python, JS), в) фреймворк для JS (jQuery) и набор инструментов (Bootstrap)</p>
+    </div>
+</div>
+{% endblock content %}
 
-{% endblock %}
 
 {% block scripts %}
-	<script src="../static/app/scripts/ScriptForSlider.js"></script>
+<script src="{% static 'app/scripts/ScriptForTeamMembers.js' %}"></script>
+<script src="{% static 'app/scripts/ScriptForSlidingWindow.js' %}"></script>
 
-{% endblock %}
+{% endblock scripts %}

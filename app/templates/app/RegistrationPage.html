@@ -8,26 +8,31 @@
 {% block content %}
 <div class="background__img"></div>
 
-{% if type_registration == 'user' %}
-<div class="container-fluid container-reg__form">
+<div class="container-fluid d-flex justify-content-center container-plate">
     <form method="post">
         {% csrf_token %}
-        <div class="form-group container-reg pb-2">
-            {% for field in regUserForm %}
-            {{field.label_tag}}
-            <div class="container d-flex justify-content-center">
+        <div class="container__form pb-1">
+            <div class="container container-reg__form">
+                {% for field in regForm %}
+                <div class="form-group container-reg__items">
+                    {{field.label_tag}}
                     {{field}}
-            </div>
-            {% endfor %}
-            <div class="container container-reg__btn d-flex mt-2">
-                <button type="submit" class="btn btn-success">Register</button>
+                    <small class="form-text">{{field.help_text}}</small>
+                </div>
+                {% endfor %}
+                <hr/>
+                {% if errors %}
+                <div class="errors__container container-fluid d-flex justify-content-center">
+                    <p class="error__info">{{errors}}</p>
+                </div>
+                {% endif %}
+                <div class="container-fluid d-flex justify-content-end mt-2 mb-2">
+                    <button type="submit" class="btn btn-light">Register</button>
+                </div>
             </div>
         </div>
-
     </form>
 </div>
-{% endif %}
-
 {% endblock content %}
 
 {% block scripts %}

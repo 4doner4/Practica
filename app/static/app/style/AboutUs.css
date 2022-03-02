@@ -1,108 +1,115 @@
-@import url('https://fonts.googleapis.com/css2?family=Comforter&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@500&display=swap');
-body{
-    background:url('../images/1626945077_20-kartinkin-com-p-fon-les-sverkhu-krasivo-23.jpg') no-repeat;
-    background-position: center;
-    background-size: 200%;
-
-}
-.main{
-
-    width:80%;
-    margin-top: 0%;
-    margin-left: 10%;
-    margin-right:5%;
-
-}
-
-
-.information{
-    width:300px;
-}
 /*Create main styles for cards*/
-
-
 .cards__container {
-    display: flex;
-    width: 110%;
-    padding-left:10%;
-
+	display: flex;
+	width:50%;
 }
 
-.card {
-    background-color: #ff000000;
-    margin-right: 10%;
-    perspective: 1000px;
-    transform-style: preserve-3d;
+.card__container {
+	margin-left: 15%;
+	perspective: 1000px;
+	transform-style: preserve-3d;
 }
 
 
 .card__item {
-    border-radius: 15%;
-    border-color: none;
-    box-shadow: 0px 0px 15px rgba(255, 165, 0, 1);
-    margin-top: 30px;
-    width: 250px;
-    height: 250px;
-    animation: flickCard 3s;
-    animation-iteration-count: infinite;
-    transition: transform 0.3s;
+	border-radius: 15%;
+	box-shadow: 0px 0px 15px rgba(255, 165, 0, 1);
+	margin-top: 30px;
+	width: 250px;
+	height: 250px;
+	animation: flickCard 3s;
+	animation-iteration-count: infinite;
+	transition: transform 0.3s;
 }
 
 .first__person {
-    background: url('../images/first_person.png') no-repeat;
-    background-size: 75%;
-    background-position: bottom left;
+	background: url('../images/first_person.png') no-repeat;
+	background-size: 75%;
+	background-position: bottom left;
 }
 
 .second__person {
-    background: url('../images/second_person.png') no-repeat;
-    background-size: 125%;
-    background-position: right bottom;
+	background: url('../images/second_person.png') no-repeat;
+	background-size: 125%;
+	background-position: right bottom;
 }
 
 /*Create stilization for ul*/
+
 .info__list {
-    list-style-type: none;
-    padding: 0;
-}
-p{
-    color:white;
-    font-size:20px;
-}
-.info__list p {
-    font-family: Lucida Calligraphy;
-    font-size: 20px;
-    color: white;
+	list-style-type: none;
+	padding: 0;
+	margin-top: 10px;
 }
 
-h1 {
-    width: 90%;
-    margin-left: 50%;
-    color: white;
-    transform: translate(-15%);
+p {
+	font-family: 'Comfortaa', cursive;
+	font-size: 20px;
+}
+
+.developer__info h1 {
+	margin-left: 50%;
+	transform: translate(-15%);
+	font-family: 'Comforter', cursive;
+}
+
+/*Create stilization for line under text card*/
+.container-text__underline {
+    transition: 1.5s;
+    margin-top: -10px;
+    height: 3px;
+    width: 0%;
+    background-color: rgb(255, 165, 0);
+    box-shadow: 0px 0px 20px rgba(255, 165, 0, 0.7);
+}
+
+/*Create stilization for text in section "project_info"*/
+.info{
+    height:300px;
+    width: 80%;
+    margin-top: 10%;
+    margin-left: 10%;
+}
+
+p {
+    font-size: 25px;
+    font-family: 'Snell Roundhand', cursive;
+}
+
+/*Create stilization for project information*/
+
+.container-project {
+    margin-top: 8%;
+}
+
+.container-project__info {
+    border-radius: 20px;
+    animation-name: flickBorderForProjInfo;
+    animation-iteration-count: infinite;
+    animation-duration: 20s;
+
+}
+
+.container-project__info h1 {
     font-family: 'Comforter', cursive;
 }
 
 /*Create animation for cards with @keyframes*/
-@keyframes flickCard {
-    25% {
-        box-shadow: 0px 0px 15px rgba(255, 165, 0, 0.75);
-    }
-
-    50% {
-        box-shadow: 0px 0px 15px rgba(255, 165, 0, 0.5);
-    }
-
-    75% {
-        box-shadow: 0px 0px 15px rgba(255, 165, 0, 0.75);
-    }
+@keyframes flickBorderForProjInfo {
+    0% {box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2)}
+    50% {box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.75)}
+    100% {box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2)}
 }
 
+@keyframes flickCard {
+	25% {box-shadow: 0px 0px 15px rgba(255, 165, 0, 0.75);}
+	50% {box-shadow: 0px 0px 15px rgba(255, 165, 0, 0.5);}
+	75% {box-shadow: 0px 0px 15px rgba(255, 165, 0, 0.75);}
+}
 
 /*Adding @media for adaptive site*/
 @media screen and (max-width: 600px) {
-    .cards__container {
-        display: block;
-    }
+	.cards__container {
+		display: block;
+	}
 }
