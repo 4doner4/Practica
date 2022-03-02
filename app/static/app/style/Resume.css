@@ -1,0 +1,25 @@
+.main_div{
+    width: 80%;
+    margin-left: 10%;
+    border-radius: 100px;
+    background-color: white;
+}
+.item{
+    width: 80%;
+    padding: 50px;
+    margin-left: 10%;
+    background-color: white;
+    font-family: cursive;
+}
+body{
+    height: 100%;
+    background: radial-gradient( white, #343a40);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: bottom;
+}
+.imgs{
+    height: 200px;
+    width: 200px;
+    border-radius: 20px;
+}
