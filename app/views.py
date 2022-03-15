@@ -1,7 +1,8 @@
 from django.shortcuts import render,  redirect
-from django.http import HttpResponseRedirect
+from django.http import JsonResponse, HttpResponseRedirect
 from django.core.exceptions import ObjectDoesNotExist
 from LibraryForProject.AuthFormHelper import AuthFormHelp
+from django.core import serializers
 from app import forms
 from app import models
 from .models import Vacancies
@@ -9,28 +10,33 @@ from .models import Resume
 from .forms import VacancyForm
 from .forms import ResumeForm
 
-
-authFormHelper = AuthFormHelp()
-
 def index(request):
     vacancies = Vacancies.objects.all()
 
-    if request.method == "POST":
-        authUserForm = authFormHelper.addPostMethodForLayoutForm(request)
-        if authUserForm == None:
-            return HttpResponseRedirect('/')
-
+    if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+        if request.method == "GET":
+            return JsonResponse({"vacancy": list(Vacancies.objects.all().values())})
+        else:
+            authUserForm = forms.AuthUserForm()
     else:
-        authUserForm = forms.AuthUserForm()
+        if request.method == "POST":
+            authUserForm = AuthFormHelp.addPostMethodForLayoutForm(request)
+            if authUserForm == None:
+                return HttpResponseRedirect('/')
+
+        else:
+            vacancies = Vacancies.objects.all()
+            authUserForm = forms.AuthUserForm()
 
     return render(
         request,
         "app/index.html",
-        {"account": request.session.get('account', False),
-         "statusBtnAuth": True,
+        {
+         "account": request.session.get('account', False),
          'vacancies': vacancies,
-         "authUserForm": authUserForm},
-
+         "authUserForm": authUserForm,
+         "statusBtnAuth": True
+        }
     )
 
 
@@ -38,7 +44,7 @@ def AboutUs(request):
     """Renders the about page."""
 
     if request.method == "POST":
-        authUserForm = authFormHelper.addPostMethodForLayoutForm(request)
+        authUserForm = AuthFormHelp.addPostMethodForLayoutForm(request)
         if authUserForm == None:
             return HttpResponseRedirect('/about_us')
     else:
@@ -94,7 +100,7 @@ def Registration(request):
                    "app/registrationPage.html",
                    {
                        "regForm": regForm,
-                       "errors": "This username exist, let's create new username"
+                       "errors": "This username exist, let's create new username",
                    }
                )
            except ObjectDoesNotExist:
@@ -113,7 +119,7 @@ def Registration(request):
                        "app/RegistrationPage.html",
                        {
                            "regForm": regForm,
-                           "errors": "Passwords don't match"
+                           "errors": "Passwords don't match",
                        }
                    )
         else:
@@ -122,7 +128,7 @@ def Registration(request):
                 "app/RegistrationPage.html",
                 {
                     "regForm": regForm,
-                    "errors": "Your data is not valid. Please rewrite that form!"
+                    "errors": "Your data is not valid. Please rewrite that form!",
                 }
             )
 
@@ -134,12 +140,13 @@ def Registration(request):
         "app/RegistrationPage.html",
         {
             "regForm": regForm,
-            "errors": False
+            "errors": False,
         }
     )
 
 def CreateVacancy(request):
     error = ''
+
     if request.method == "POST":
         form = VacancyForm(request.POST)
         if form.is_valid():
@@ -150,7 +157,7 @@ def CreateVacancy(request):
     form = VacancyForm()
     data = {
         'form': form,
-        'error': error
+        'error': error,
     }
 
     return render(request, 'app/CreateVacancy.html', data)
@@ -169,14 +176,22 @@ def CreateResume(request):
     data = {
         'form': form,
         'error': error,
-        'resume': resume
+        'resume': resume,
     }
 
     return render(request, 'app/CreateResume.html', data)
+
 def Resume(request):
 
     data = {
-        'resume': resume
+        'resume': resume,
     }
 
     return render(request, 'app/Resume.html', data)
+
+def Search(request):
+    return render(
+        request,
+        'app/Search.html',
+    )
+

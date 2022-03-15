@@ -12,6 +12,7 @@ urlpatterns = [
     path('CreateVacancy', views.CreateVacancy, name="CreateVacancy"),
     path('CreateResume', views.CreateResume, name="CreateResume"),
     path('Resume', views.Resume, name="Resume"),
+    path('Search', views.Search, name="Search"),
     path('admin/', admin.site.urls),
 ]
 if settings.DEBUG:

@@ -5,7 +5,7 @@ from django.forms import ModelForm, TextInput, DateTimeInput, Textarea
 from app import models
 from django import forms
 
-class AuthUserForm(forms.Form):
+class AuthUserForm(ModelForm):
     class Meta:
         model = models.Accounts
         fields = ['usernameAcc', 'psswdAcc']
@@ -30,6 +30,10 @@ class RegistrationForm(forms.Form):
     regUserCompChoice = forms.ChoiceField(label="Who do you want to register?",
                                           choices=[(1, "User"), (2, "Company")],
                                           widget=forms.RadioSelect(attrs={"class": "form-check-input form-auth__input"}))
+
+class SearchForm(forms.Form):
+    search_inp = forms.CharField(widget=forms.TextInput(attrs={"class": "form-control mr-sm-0"}))
+
 
 class VacancyForm(ModelForm):
     class Meta:
