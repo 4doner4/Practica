@@ -80,7 +80,62 @@
 									{% else %}
 									<div class="modal-body">
 										<div class="form-group">
-											<p>Добро пожаловать {{account}}</p>
+											<p>Добро пожаловать</p>
+											<div class="menu-container">
+												{% if role == "user" %}
+												<a href="{% url 'Resume' %}" class="menu-item__link">
+													<div class="menu-item__container">
+														<div class="image-item__container"></div>
+														<div class="info-item__container">
+															<small>My Resume</small>
+														</div>
+													</div>
+												</a>
+												<a href = "#" class="menu-item__link">
+													<div class="menu-item__container">
+														<div class="image-item__container"></div>
+														<div class="info-item__container">
+															<small>Something</small>
+														</div>
+													</div>
+												</a>
+												{% elif role == "company" %}
+												<a href="{% url 'AboutUs' %}" class="menu-item__link">
+													<div class="menu-item__container">
+														<div class="image-item__container"></div>
+														<div class="info-item__container">
+															<small>My Vacancy</small>
+														</div>
+													</div>
+												</a>
+												<a href="#" class="menu-item__link ">
+													<div class="menu-item__container">
+														<div class="image-item__container"></div>
+														<div class="info-item__container">
+															<small>Notifications</small>
+														</div>
+													</div>
+												</a>
+												{% else %}
+												<a href="{% url 'AdminPanel' action='CheckComplaint' %}" class="menu-item__link">
+													<div class="menu-item__container">
+														<div class="image-item__container"></div>
+														<div class="info-item__container">
+															<small>View complaints</small>
+														</div>
+													</div>
+												</a>
+												<a href="{% url 'AdminPanel' action='ChangeRole' %}" class="menu-item__link">
+													<div class="menu-item__container">
+														<div class="image-item__container"></div>
+														<div class="info-item__container">
+															<small>Change status for accounts</small>
+														</div>
+													</div>
+												</a>
+												{% endif %}
+
+											</div>
 										</div>
 									</div>
 									<div class="modal-footer">

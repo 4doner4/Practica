@@ -1,0 +1,22 @@
+{% extends 'app/Layout/layout.html' %}
+
+{% block style %}{% endblock style %}
+
+{% block content %}
+<div class="form-change__wrapper">
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="selectorOfRoles">Choose new role</label>
+            <select class="form-control" id="selectorOfRoles" name="role">
+                <option value="1">user</option>
+                <option value="2">company</option>
+                <option value="3">admin</option>
+            </select>
+            <input class="btn btn-primary" type="submit" value="Save">
+        </div>
+    </form>
+</div>
+{% endblock content %}
+
+{% block scripts %}{% endblock scripts %}

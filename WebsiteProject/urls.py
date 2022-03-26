@@ -7,6 +7,8 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('', views.index, name="main"),
     path('vacancy/<str:id_vacancy>', views.Vacancy, name="vacancy"),
+    path("adminPanel/<str:action>", views.AdminPanel, name="AdminPanel"),
+    path("editRole/<int:acc_id>", views.EditRole, name="EditRole"),
     path('registration/', views.Registration, name='registration'),
     path('about_us/', views.AboutUs, name="AboutUs"),
     path('CreateVacancy', views.CreateVacancy, name="CreateVacancy"),

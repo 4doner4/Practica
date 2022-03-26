@@ -32,10 +32,11 @@ def index(request):
         request,
         "app/index.html",
         {
-         "account": request.session.get('account', False),
-         'vacancies': vacancies,
-         "authUserForm": authUserForm,
-         "statusBtnAuth": True
+            "account": request.session.get('account', False),
+            "role": request.session.get("role", False),
+            'vacancies': vacancies,
+            "authUserForm": authUserForm,
+            "statusBtnAuth": True,
         }
     )
 
@@ -161,6 +162,7 @@ def CreateVacancy(request):
     }
 
     return render(request, 'app/CreateVacancy.html', data)
+
 resume = Resume.objects.all()
 def CreateResume(request):
 
@@ -195,3 +197,50 @@ def Search(request):
         'app/Search.html',
     )
 
+def AdminPanel(request, action):
+    if request.session.get("role", False) and request.session.get("role", False) == "admin":
+        if action == "CheckComplaint":
+            return render(
+                request,
+                "app/AdminPanel.html",
+                {
+
+                }
+            )
+        elif action == "ChangeRole":
+            accounts = models.Accounts.objects.all()
+            return render(
+                request,
+                "app/AdminPanel.html",
+                {
+                    "accounts": accounts
+                }
+            )
+    return HttpResponseRedirect("/")
+
+def EditRole(request, acc_id):
+    try:
+        account = models.Accounts.objects.get(id=acc_id)
+        if request.method == "POST":
+            choice = request.POST.get("role")
+            role = None
+
+            if choice == '1':
+                role = models.Roles.objects.get(role_name="user")
+            if choice == '2':
+                role = models.Roles.objects.get(role_name="company")
+            if choice == '3':
+                role = models.Roles.objects.get(role_name="admin")
+
+            account.roles_id = role.id
+            account.save()
+            return HttpResponseRedirect("/adminPanel/ChangeRole")
+
+
+    except ObjectDoesNotExist:
+        return HttpResponseRedirect("/")
+
+    return render(
+        request,
+        "app/EditRole.html"
+    )

@@ -1,0 +1,32 @@
+{% extends 'app/Layout/layout.html' %}
+
+{% block style %}{% endblock style %}
+
+{% block content %}
+    {% if accounts %}
+        <div class="container-fluid container-info__wrapper">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Username</th>
+                        <th scope="col">Role</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for acc in accounts %}
+                    <tr>
+                        <th scope="row">{{acc.usernameAcc}}</th>
+                        <td>{{acc.roles.role_name}}</td>
+                        <td>
+                            <a href="{% url 'EditRole' acc_id=acc.id %}">Change</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% endif %}
+{% endblock content %}
+
+{% block scripts %}{% endblock scripts %}

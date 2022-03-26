@@ -36,12 +36,6 @@
     </a>
     {% endfor %}
 </div>
-
-<div>
-    {% if something %}
-    <h2>{{something}}</h2>
-    {% endif %}
-</div>
 {% endblock %}
 
 {% block scripts %}
@@ -70,7 +64,7 @@
                         alert("Error")
                     }
                 });
-            }, 10000);
+            }, 50000);
         });
     </script>
 
