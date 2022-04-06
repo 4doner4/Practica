@@ -1,7 +1,9 @@
 {% extends "app/Layout/layout.html" %}
 
+{% load static %}
+
 {% block style %}
-    <link rel="stylesheet" type="text/css" href="../static/app/style/StyleForCreateResume.css" />
+    <link rel="stylesheet" type="text/css" href="{% static 'app/style/StyleForCreating.css' %}" />
 {% endblock %}
 
 {% block content %}
@@ -9,17 +11,12 @@
     <form method = "post">
         {%csrf_token%}
         <h3> Добавление резюме </h3>
-            {{form.name}}
-            {{form.surname}}
-            {{form.email}}
-            {{form.text}}
-            {{form.experience}}
-            {{form.date}}
-            {{form.Imagesrs}}
-            {{form.Telephonenumber}}
-
+            {% for elem in form %}
+            {{elem.label_tag}}
+            {{elem}}
+            {% endfor %}
         <span>{{error}}</span>
-        <button class = " btn btn-success " type = "submit"> Добавить запись</button>
+        <button class = "btn btn-success" type = "submit"> Добавить запись</button>
     </form>
  </div>
 {% endblock %}

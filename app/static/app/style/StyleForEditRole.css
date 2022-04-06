@@ -1,0 +1,6 @@
+.form-change__item {
+    width: 25%;
+    padding: 5px;
+    box-shadow: 0 0 2.5px rgba(51, 51, 51, 1);
+    border-radius: 5px;
+}

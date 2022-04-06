@@ -24,8 +24,10 @@ class Vacancies(models.Model):
     email = models.CharField('Email', max_length=50)
     text = models.TextField('Text')
     date = models.DateField('Data')
-    Imagesrs = models.CharField('Imageurl', max_length=50)
-    Telephonenumber = models.CharField('Telephonenumber', max_length=20)
+    imagesrs = models.CharField('Imageurl', max_length=50)
+    telephonenumber = models.CharField('Telephonenumber', max_length=20)
+    complaint = models.IntegerField("Complaint")
+    accounts = models.ForeignKey(Accounts, on_delete=models.CASCADE, null=True)
     def __str__(self):
         return self.title
 
@@ -35,9 +37,11 @@ class Resume(models.Model):
     email = models.CharField('Email', max_length=50)
     text = models.TextField('Text')
     date = models.DateField('Data')
-    experience = models.CharField("Experience", max_length= 100)
-    Imagesrs = models.CharField('Imageurl', max_length=50)
-    Telephonenumber = models.CharField('Telephonenumber', max_length=20)
+    experience = models.CharField("Experience", max_length=100)
+    imagesrs = models.CharField('Imageurl', max_length=50)
+    telephonenumber = models.CharField('Telephonenumber', max_length=20)
+    complaint = models.CharField("Complaint", null=True, blank=True, max_length=20)
+    accounts = models.ForeignKey(Accounts, on_delete=models.CASCADE, null=True)
     def __str__(self):
         return self.name
 
