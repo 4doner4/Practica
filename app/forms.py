@@ -34,76 +34,36 @@ class RegistrationForm(forms.Form):
 class SearchForm(forms.Form):
     search_inp = forms.CharField(widget=forms.TextInput(attrs={"class": "form-control mr-sm-0"}))
 
+class VacancyForm(forms.Form):
+    title = forms.CharField(label="Название вакансии",
+                            widget=forms.TextInput(attrs={"class": "form-control fromsvacancy", "placeholder": "Название вакансии"}))
+    salary = forms.CharField(label="Зарплата",
+                             widget=forms.TextInput(attrs={"class": "form-control fromsvacancy", "placeholder": "Размер зарплаты"}))
+    email = forms.EmailField(label="Email",
+                             widget=forms.TextInput(attrs={"class": "form-control fromsvacancy", "placeholder": "Ваш email"}))
+    text = forms.CharField(label="Описание вакансии",
+                           widget=forms.Textarea(attrs={"class": "form-control fromsvacancy", "placeholder": "Описание"}))
+    date = forms.DateField(label="Дата публикации",
+                           widget=forms.DateInput(attrs={"class": "form-control fromsvacancy", "placeholder": "Дата публикации"}))
+    imagesrs = forms.CharField(label="Ссылка на фото",
+                              widget=forms.TextInput(attrs={"class": "form-control fromsvacancy", "placeholder": "Путь к файлу"}))
+    telephonenumber = forms.CharField(label="Номер телефона",
+                                      widget=forms.TextInput(attrs={"class": "form-control fromsvacancy", "placeholder": "Номер телефона"}))
 
-class VacancyForm(ModelForm):
-    class Meta:
-        model = Vacancies
-        fields = ['title', 'salary', 'email', 'text', 'date', 'Imagesrs', 'Telephonenumber']
-        widgets = {
-            "title": TextInput(attrs={
-                'class': 'form-control fromsvacancy',
-                'placeholder': 'Название вакансии'
-            }),
-            "salary": TextInput(attrs={
-                'class': 'form-control fromsvacancy',
-                'placeholder': 'Зарплата'
-            }),
-            "email": TextInput(attrs={
-                'class': 'form-control fromsvacancy',
-                'placeholder': 'Email аддрес'
-            }),
-            "date": DateTimeInput(attrs={
-                'class': 'form-control fromsvacancy',
-                'placeholder': 'Дата публикации'
-            }),
-            "text": Textarea(attrs={
-                'class': 'form-control fromsvacancy',
-                'placeholder': 'Текст вакансии'
-            }),
-            "Imagesrs": TextInput(attrs={
-                'class': 'form-control fromsvacancy',
-                'placeholder': 'Ссылка на изображения'
-            }),
-            "Telephonenumber": TextInput(attrs={
-                'class': 'form-control fromsvacancy',
-                'placeholder': 'Телефон'
-            }),
-        }
-class ResumeForm(ModelForm):
-    class Meta:
-        model = Resume
-        fields = ['name', 'surname', 'email', 'text', 'date', 'experience', 'Imagesrs', 'Telephonenumber']
-        widgets = {
-            "name": TextInput(attrs={
-                'class': 'form-control fromsvacancy',
-                'placeholder': 'Имя'
-            }),
-            "surname": TextInput(attrs={
-                'class': 'form-control fromsvacancy',
-                'placeholder': 'Фамилия'
-            }),
-            "email": TextInput(attrs={
-                'class': 'form-control fromsvacancy',
-                'placeholder': 'Email аддрес'
-            }),
-            "experience": TextInput(attrs={
-                'class': 'form-control fromsvacancy',
-                'placeholder': 'Опыт работы'
-            }),
-            "date": DateTimeInput(attrs={
-                'class': 'form-control fromsvacancy',
-                'placeholder': 'Дата публикации'
-            }),
-            "text": Textarea(attrs={
-                'class': 'form-control fromsvacancy',
-                'placeholder': 'Информация о себе'
-            }),
-            "Imagesrs": TextInput(attrs={
-                'class': 'form-control fromsvacancy',
-                'placeholder': 'Ссылка на изображения'
-            }),
-            "Telephonenumber": TextInput(attrs={
-                'class': 'form-control fromsvacancy',
-                'placeholder': 'Телефон'
-            }),
-        }
+class ResumeForm(forms.Form):
+    name = forms.CharField(label="Имя",
+                           widget=forms.TextInput(attrs={"class": "form-control fromsvacancy", "placeholder": "Имя"}))
+    surname = forms.CharField(label="Фамилия",
+                              widget=forms.TextInput(attrs={"class": "form-control fromsvacancy", "placeholder": "Фамилия"}))
+    email = forms.EmailField(label="Email",
+                             widget=forms.TextInput(attrs={"class": "form-control fromsvacancy", "placeholder": "Email"}))
+    text = forms.CharField(label="Текст",
+                           widget=forms.Textarea(attrs={"class": "form-control fromsvacancy", "placeholder": "Ваш текст"}))
+    date = forms.DateField(label="Ваша дата:",
+                           widget=forms.DateInput(attrs={"class": "form-control fromsvacancy", "placeholder": "Дата рождения"}))
+    experience = forms.CharField(label="Опыт работы:",
+                                 widget=forms.TextInput(attrs={"class": "form-control fromsvacancy", "placeholder": "Опыт работы"}))
+    imagesrs = forms.CharField(label="Ссылка на фотографию:",
+                               widget=forms.TextInput(attrs={"class": "form-control fromsvacancy", "placeholder": "Ссылка на фото"}))
+    telephonenumber = forms.CharField(label="Номер телефона:",
+                                      widget=forms.TextInput(attrs={"class": "form-control fromsvacancy", "placeholder": "Номер телефона"}))

@@ -1,21 +1,38 @@
 {% extends 'app/Layout/layout.html' %}
+{% load static %}
 
-{% block style %}{% endblock style %}
+{% block style %}
+    <link rel="stylesheet" href="{% static 'app/style/StyleForEditRole.css' %}">
+{% endblock style %}
 
 {% block content %}
-<div class="form-change__wrapper">
-    <form method="post">
-        {% csrf_token %}
-        <div class="form-group">
-            <label for="selectorOfRoles">Choose new role</label>
-            <select class="form-control" id="selectorOfRoles" name="role">
-                <option value="1">user</option>
-                <option value="2">company</option>
-                <option value="3">admin</option>
-            </select>
-            <input class="btn btn-primary" type="submit" value="Save">
-        </div>
-    </form>
+<div class="form-change__wrapper container-fluid d-flex justify-content-center">
+    <div class="form-change__item">
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="selectorOfRoles">Choose new role for {{accName}}:</label>
+                <select class="form-control" id="selectorOfRoles" name="role">
+                    {% if accRole == "user" %}
+                    <option value="1" selected>User</option>
+                    {% else %}
+                    <option value="1">User</option>
+                    {% endif %}
+                    {% if accRole == "company" %}
+                    <option value="2" selected>Company</option>
+                    {% else %}
+                    <option value="2">Company</option>
+                    {% endif %}
+                    {% if accRole == "admin" %}
+                    <option value="3" selected>Admin</option>
+                    {% else %}
+                    <option value="3">Admin</option>
+                    {% endif %}
+                </select>
+            </div>
+            <input class="btn btn-primary btn" type="submit" value="Save">
+        </form>
+    </div>
 </div>
 {% endblock content %}
 

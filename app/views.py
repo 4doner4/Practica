@@ -2,7 +2,6 @@ from django.shortcuts import render,  redirect
 from django.http import JsonResponse, HttpResponseRedirect
 from django.core.exceptions import ObjectDoesNotExist
 from LibraryForProject.AuthFormHelper import AuthFormHelp
-from django.core import serializers
 from app import forms
 from app import models
 from .models import Vacancies
@@ -147,11 +146,20 @@ def Registration(request):
 
 def CreateVacancy(request):
     error = ''
-
     if request.method == "POST":
         form = VacancyForm(request.POST)
         if form.is_valid():
-            form.save()
+            vacancy = models.Vacancies()
+            vacancy.title = form.cleaned_data["title"]
+            vacancy.salary = form.cleaned_data["salary"]
+            vacancy.email = form.cleaned_data["email"]
+            vacancy.text = form.cleaned_data["text"]
+            vacancy.date = form.cleaned_data["date"]
+            vacancy.imagesrs = form.cleaned_data["imagesrs"]
+            vacancy.telephonenumber = form.cleaned_data["telephonenumber"]
+            vacancy.complaint = 0
+            vacancy.accounts = models.Accounts.objects.get(usernameAcc=request.session.get("account", False))
+            vacancy.save()
             return redirect('main')
         else:
             error = 'Форма заполнена неверно'
@@ -163,14 +171,24 @@ def CreateVacancy(request):
 
     return render(request, 'app/CreateVacancy.html', data)
 
-resume = Resume.objects.all()
 def CreateResume(request):
 
     error = ''
     if request.method == "POST":
-        form = ResumeForm(request.POST)
+        form = forms.ResumeForm(request.POST)
         if form.is_valid():
-            form.save()
+            resume = models.Resume()
+            resume.name = form.cleaned_data["name"]
+            resume.surname = form.cleaned_data["surname"]
+            resume.email = form.cleaned_data["email"]
+            resume.text = form.cleaned_data["text"]
+            resume.date = form.cleaned_data["date"]
+            resume.experience = form.cleaned_data["experience"]
+            resume.imagesrs = form.cleaned_data["imagesrs"]
+            resume.telephonenumber = form.cleaned_data["telephonenumber"]
+            resume.complaint = 0
+            resume.accounts = models.Accounts.objects.get(usernameAcc=request.session.get("account", False))
+            resume.save()
             return redirect('main')
         else:
             error = 'Форма заполнена неверно'
@@ -178,7 +196,7 @@ def CreateResume(request):
     data = {
         'form': form,
         'error': error,
-        'resume': resume,
+        'resume': models.Resume.objects.all(),
     }
 
     return render(request, 'app/CreateResume.html', data)
@@ -186,7 +204,7 @@ def CreateResume(request):
 def Resume(request):
 
     data = {
-        'resume': resume,
+        'resume': models.Resume.objects.all(),
     }
 
     return render(request, 'app/Resume.html', data)
@@ -208,7 +226,7 @@ def AdminPanel(request, action):
                 }
             )
         elif action == "ChangeRole":
-            accounts = models.Accounts.objects.all()
+            accounts = models.Accounts.objects.all().exclude(usernameAcc=request.session.get("account", False))
             return render(
                 request,
                 "app/AdminPanel.html",
@@ -242,5 +260,9 @@ def EditRole(request, acc_id):
 
     return render(
         request,
-        "app/EditRole.html"
+        "app/EditRole.html",
+        {
+            "accName": account.usernameAcc,
+            "accRole": account.roles.role_name
+        }
     )
