@@ -210,10 +210,23 @@ def Resume(request):
     return render(request, 'app/Resume.html', data)
 
 def Search(request):
+
+    if request.GET.get("q") != None:
+        if request.method == "GET":
+            query = request.GET.get("q")
+            vacancies = Vacancies.objects.filter(title__icontains=query)
+
+    else:
+        vacancies = Vacancies.objects.all()
+    data = {
+        'vacancies': vacancies
+    }
     return render(
         request,
         'app/Search.html',
+        data
     )
+
 
 def AdminPanel(request, action):
     if request.session.get("role", False) and request.session.get("role", False) == "admin":

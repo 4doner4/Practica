@@ -1,13 +1,37 @@
 {% extends 'app/Layout/layout.html' %}
-
-{% block style %}{% endblock style %}
+{% load static %}
+{% block style %}
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <link href="{% static 'app/style/Search.css' %}" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+{% endblock style %}
 
 {% block content %}
-<div>
-    <form method="post">
-
-    </form>
+{%csrf_token%}
+<div class="main_div">
+<form method="GET">
+<div class="input-group">
+  <div class="form-outline">
+    <input name="q" id="search-focus" type="search" id="form1" class="form-control" placeholder="Search..."/>
+  </div>
+  <button type="submit" class="btn btn-primary"> <i class="fa fa-search"></i> </button>
 </div>
+</form>
+        <div id="main_container">
+          {% for el in vacancies %}
+
+                <div class="col">
+                    <a href="{% url 'vacancy' id_vacancy=el.id %}">
+                    <h4>{{el.title}}</h4>
+                    <p>{{el.salary}} <br> {{el.date}}</p>
+                    </a>
+                </div>
+            {% endfor %}
+
+        </div>
+
+</div>
+
 {% endblock content %}
 
 {% block scripts %}{% endblock scripts %}
