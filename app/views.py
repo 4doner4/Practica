@@ -11,6 +11,7 @@ from .forms import ResumeForm
 
 def index(request):
     vacancies = Vacancies.objects.all()
+    resume = models.Resume.objects.filter(accounts=models.Accounts.objects.filter(usernameAcc=request.session.get('account', False)))
 
     if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
         if request.method == "GET":
@@ -36,6 +37,7 @@ def index(request):
             'vacancies': vacancies,
             "authUserForm": authUserForm,
             "statusBtnAuth": True,
+            "resume": resume
         }
     )
 
@@ -59,6 +61,7 @@ def AboutUs(request):
             "psswd": request.session.get('psswdUser', False),
             "statusBtnAuth": True,
             "authUserForm": authUserForm,
+            "id_user": request.session.get("id", False),
             "persons": [{
                 "person_id": "first__person",
                 "name": "Leha",
@@ -201,10 +204,15 @@ def CreateResume(request):
 
     return render(request, 'app/CreateResume.html', data)
 
-def Resume(request):
+def Resume(request, id_resume):
+
+    if request.method == "POST":
+        models.Resume.objects.filter(id=id_resume).delete()
+        return HttpResponseRedirect("/")
 
     data = {
-        'resume': models.Resume.objects.all(),
+        'resume': models.Resume.objects.filter(id=id_resume),
+        'role': request.session.get("role", False)
     }
 
     return render(request, 'app/Resume.html', data)
@@ -218,11 +226,12 @@ def Search(request):
 def AdminPanel(request, action):
     if request.session.get("role", False) and request.session.get("role", False) == "admin":
         if action == "CheckComplaint":
+            resumes = models.Resume.objects.filter(complaint__gt=10)
             return render(
                 request,
                 "app/AdminPanel.html",
                 {
-
+                    "resumes": resumes
                 }
             )
         elif action == "ChangeRole":
