@@ -26,6 +26,29 @@
                 </tbody>
             </table>
         </div>
+    {% else %}
+    <div class="container-fluid container-info__wrapper">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">Name Resume</th>
+                <th scope="col">Complaints</th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for res in resumes %}
+            <tr>
+                <th scope="row">{{res.name}}</th>
+                <td>{{res.complaint}}</td>
+                <td>
+                    <a href="{% url 'Resume' id_resume=res.id %}">Check Resume</a>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
     {% endif %}
 {% endblock content %}
 

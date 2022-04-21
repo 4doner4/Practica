@@ -23,6 +23,7 @@
 					<!--- Create collapse navbar if size of screen will be less lg --->
 					<div class="collapse navbar-collapse" id="additional-menu">
 						<ul class="navbar-nav mr-auto">
+<<<<<<< HEAD
 							<li class="nav-item">
 								<a class="nav-link" href="{% url 'Resume' %}">Resume</a>
 							</li>
@@ -36,13 +37,21 @@
 							</li>
 
 							{% elif role == "admin"%}
+=======
+							{% if role == "user" %}
+>>>>>>> 861f13aaf6fe2008af00c82379cc2307af52a609
 							<li class="nav-item">
 								<a class="nav-link" href="{% url 'CreateResume' %}">CreateResume</a>
 							</li>
+							{% elif role == "company" %}
 							<li class="nav-item">
 								<a class="nav-link" href="{% url 'CreateVacancy' %}">CreateVacancy</a>
 							</li>
+<<<<<<< HEAD
 							{%endif%}
+=======
+							{% endif %}
+>>>>>>> 861f13aaf6fe2008af00c82379cc2307af52a609
 						</ul>
 						<a href="{% url 'Search' %}" class="btn btn-info mx-2">Поиск</a>
 						<!--- Create button for call modal window --->
@@ -94,7 +103,7 @@
 											<p>Добро пожаловать</p>
 											<div class="menu-container">
 												{% if role == "user" %}
-												<a href="{% url 'Resume' %}" class="menu-item__link">
+												<a href="{% url 'Resume' id_resume=1%}" class="menu-item__link">
 													<div class="menu-item__container">
 														<div class="image-item__container"></div>
 														<div class="info-item__container">
@@ -157,6 +166,7 @@
 							</div>
 						</div>
 					</div>
+					{{resume.id}}
 					{% block content %} {% endblock content %}
 				</div>
 			</main>

@@ -3,7 +3,11 @@
     margin-left: 10%;
     border-radius: 100px;
     background-color: white;
+<<<<<<< HEAD
+    padding: 10px;
+=======
 
+>>>>>>> 8985d030bce5f0ad3d72d35a8ab6fd5b4f7a42f6
 }
 .item{
     width: 80%;
@@ -24,4 +28,8 @@ body{
     height: 200px;
     width: 200px;
     border-radius: 20px;
+}
+
+.btn-deleter {
+    margin-left: 100px;
 }

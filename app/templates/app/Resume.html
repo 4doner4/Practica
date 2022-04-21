@@ -5,20 +5,27 @@
 {% endblock %}
 
 {% block content %}
- <div class = "main_div">
-        {%csrf_token%}
-        {% for el in resume%}
-        <div class="item" >
-            <h1>Резюме: {{el.id}}</h1>
-            <h1> {{el.name}} {{el.surname}} </h1> <img class="imgs" src="{{el.Imagesrs}}" alt="">
-            <h3>Email: {{el.email}}</h3>
-            <h3>Key skills:  <div class="text-div"><h5> {{el.text}} </h5></div></h3>
-            <h3>Experience: <h5>{{el.experience}}</h5></h3>
-            <h3>Date: <h5> {{el.date}}</h5> </h3>
-            <h3>Number: <h5> {{el.Telephonenumber}}</h5></h3>
-        </div>
-        {% endfor %}
+<div class = "main_div">
+    {%csrf_token%}
+    {% for el in resume%}
+    <div class="item" >
+        <h1>Резюме: {{el.id}}</h1>
+        <h1> {{el.name}} {{el.surname}} </h1> <img class="imgs" src="{{el.Imagesrs}}" alt="">
+        <h3>Email: {{el.email}}</h3>
+        <h3>Key skills:  <div class="text-div"><h5> {{el.text}} </h5></div></h3>
+        <h3>Experience: <h5>{{el.experience}}</h5></h3>
+        <h3>Date: <h5> {{el.date}}</h5> </h3>
+        <h3>Number: <h5> {{el.Telephonenumber}}</h5></h3>
+    </div>
+    {% endfor %}
+    {% if role == "admin" %}
+    <form method="post">
+        {% csrf_token %}
+        <button class="btn btn-outline-danger btn-deleter" type="submit">Delete</button>
+    </form>
  </div>
+
+{% endif %}
 {% endblock %}
 {% block scripts %}
 
