@@ -44,7 +44,7 @@ class VacancyForm(forms.Form):
     text = forms.CharField(label="Описание вакансии",
                            widget=forms.Textarea(attrs={"class": "form-control fromsvacancy", "placeholder": "Описание"}))
     date = forms.DateField(label="Дата публикации",
-                           widget=forms.DateInput(attrs={"class": "form-control fromsvacancy", "placeholder": "Дата публикации"}))
+                           widget=forms.DateInput(attrs={"class": "form-control fromsvacancy", "type":"date", "placeholder": "Дата публикации"}))
     imagesrs = forms.CharField(label="Ссылка на фото",
                               widget=forms.TextInput(attrs={"class": "form-control fromsvacancy", "placeholder": "Путь к файлу"}))
     telephonenumber = forms.CharField(label="Номер телефона",
@@ -60,7 +60,7 @@ class ResumeForm(forms.Form):
     text = forms.CharField(label="Текст",
                            widget=forms.Textarea(attrs={"class": "form-control fromsvacancy", "placeholder": "Ваш текст"}))
     date = forms.DateField(label="Ваша дата:",
-                           widget=forms.DateInput(attrs={"class": "form-control fromsvacancy", "placeholder": "Дата рождения"}))
+                           widget=forms.DateInput(attrs={"class": "form-control fromsvacancy","type":"date", "placeholder": "Дата рождения"}))
     experience = forms.CharField(label="Опыт работы:",
                                  widget=forms.TextInput(attrs={"class": "form-control fromsvacancy", "placeholder": "Опыт работы"}))
     imagesrs = forms.CharField(label="Ссылка на фотографию:",

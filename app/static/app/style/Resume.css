@@ -3,7 +3,11 @@
     margin-left: 10%;
     border-radius: 100px;
     background-color: white;
+<<<<<<< HEAD
     padding: 10px;
+=======
+
+>>>>>>> 8985d030bce5f0ad3d72d35a8ab6fd5b4f7a42f6
 }
 .item{
     width: 80%;
@@ -13,6 +17,7 @@
     font-family: cursive;
 }
 body{
+    min-height: 500px;
     height: 100%;
     background: radial-gradient( white, #343a40);
     background-repeat: no-repeat;
